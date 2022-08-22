@@ -10,7 +10,7 @@ trigger:
 stages:
 - stage: Stage1
   displayName: Stage 1
-  dependsOn: []
+  
 #  condition: and(contains(variables['build.sourceBranch'], 'refs/tags/*'), succeeded())
   jobs:
   - job: ShowVariables
