@@ -1,8 +1,8 @@
 
 trigger:
-  tags:
-   include:
-     - release.10
+  branches:
+    include:
+      - refs/tags/*
 
 
 
