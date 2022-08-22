@@ -2,7 +2,7 @@
 trigger:
   tags:
    include:
-     - release.*
+     - release.10
 
 
 
