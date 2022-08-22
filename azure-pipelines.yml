@@ -23,7 +23,7 @@ stages:
 - stage: Stage2
   displayName: stage 2
   dependsOn: Stage1
-  condition: contains(variables['build.sourceBranch'], 'refs/heads/main')
+  
   jobs:
   - job: ShowVariables
     displayName: Show variables 2
