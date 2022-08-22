@@ -1,35 +1,52 @@
 
 trigger:
- branches:
-  include:
-    - main
+- main
 
- tags:
-   include:
-     - release.*
+resources:
+  repositories:
+  - repository: Test02
+    type: github
+    trigger:
+     tags:
+        include:
+          - relese.*
+
+
 stages:
-- stage: Stage1
-  displayName: Stage 1
-  dependsOn: []
-  condition: and(contains(variables['build.sourceBranch'], 'refs/heads/main'), succeeded())
-  jobs:
-  - job: ShowVariables
-    displayName: Show variables
-    steps:
-    - task: CmdLine@2
-      displayName: Show variables
-      inputs:
-        script: 'printenv'
 
-- stage: Stage2
-  displayName: stage 2
-  dependsOn: Stage1
-  condition: contains(variables['build.sourceBranch'], 'refs/heads/main')
+- stage: 'checker'
+  displayName: checker
+  condition: "and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))"
+  pool:
+    vmImage: 'ubuntu-latest'
   jobs:
-  - job: ShowVariables
-    displayName: Show variables 2
+  - job: 'checker_account'
+
     steps:
-    - task: CmdLine@2
-      displayName: Show variables 2
-      inputs:
-        script: 'printenv'
+    - script: echo Hello, world!
+      displayName: 'Run a one-line script'
+      enabled: false
+
+    - script: |
+        echo Add other tasks to build, test, and deploy your project.
+        echo See https://aka.ms/yaml
+      displayName: 'Run a multi-line script'
+
+- stage: 'Packaging'
+  dependsOn: checker
+#  condition: always()
+#  condition: "in(variables['Build.SourceBranch'], 'refs/heads/dev')"
+  condition: and(contains(variables['build.sourceBranch'], 'refs/heads/main'), succeeded())
+  pool:
+    vmImage: 'ubuntu-latest'
+  jobs:
+  - job: 'Packaging_account'
+
+    steps:
+    - script: echo Hello, world!
+      displayName: 'Run a one-line script'
+
+    - script: |
+        echo Add other tasks to build, test, and deploy your project.
+        echo See https://aka.ms/yaml
+      displayName: 'Run a multi-line script'
