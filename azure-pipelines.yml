@@ -3,14 +3,10 @@ trigger:
   branches:
     include:
       - refs/tags/*
-      
-
-
 
 stages:
 - stage: Stage1
-  displayName: Stage 1
-  
+  displayName: Stage 1  
 #  condition: and(contains(variables['build.sourceBranch'], 'refs/tags/*'), succeeded())
   jobs:
   - job: ShowVariables
@@ -22,8 +18,7 @@ stages:
         script: 'printenv'
 
 - stage: Stage2
-  condition: always()
-  displayName: stage 2
+  
   dependsOn: []
   
   jobs:
