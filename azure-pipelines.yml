@@ -22,6 +22,7 @@ stages:
         script: 'printenv'
 
 - stage: Stage2
+  condition: always()
   displayName: stage 2
   dependsOn: Stage1
   
