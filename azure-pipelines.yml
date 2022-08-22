@@ -5,7 +5,8 @@ trigger:
       - refs/tags/*
 
 stages:
-- stage: Stage1
+- stage: checker
+  condition: "and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))"
   jobs:
   - job: ShowVariables
     displayName: Show variables
