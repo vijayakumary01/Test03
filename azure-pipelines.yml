@@ -7,20 +7,17 @@ resources:
   pipelines:
   - pipeline: vijayakumary01.Test03
     project: Test03
-    source: SmartHotel-CI
+    source: azure-pipelines.yml
     trigger:
       branches:
         include:
-        - releases/*
         - main
-        exclude:
-        - topic/*
+       
       tags: 
-      - Verified
-      - Signed
+      - release.*
       stages:
-      - Production
-      - PreProduction
+      - Stage01
+      - Stage02
 stages:
 - stage: Stage1
   displayName: Stage 1
