@@ -5,9 +5,9 @@ trigger:
     
 resources:
   pipelines:
-  - pipeline: vijayakumary01.Test03
+  - pipeline: SmartHotel
     project: Test03
-    source: azure-pipelines.yml
+    source: SmartHotel-ci
     trigger:
       branches:
         include:
