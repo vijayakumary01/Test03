@@ -1,0 +1,35 @@
+
+trigger:
+ branches:
+  include:
+    - main
+
+ tags:
+   include:
+     - release.*
+stages:
+- stage: Stage1
+  displayName: Stage 1
+  dependsOn: []
+  condition: and(contains(variables['build.sourceBranch'], 'refs/heads/main'), succeeded())
+  jobs:
+  - job: ShowVariables
+    displayName: Show variables
+    steps:
+    - task: CmdLine@2
+      displayName: Show variables
+      inputs:
+        script: 'printenv'
+
+- stage: Stage2
+  displayName: stage 2
+  dependsOn: Stage1
+  condition: contains(variables['build.sourceBranch'], 'refs/heads/main')
+  jobs:
+  - job: ShowVariables
+    displayName: Show variables 2
+    steps:
+    - task: CmdLine@2
+      displayName: Show variables 2
+      inputs:
+        script: 'printenv'
