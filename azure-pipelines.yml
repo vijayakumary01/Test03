@@ -14,4 +14,16 @@ stages:
       displayName: Show variables
       inputs:
         script: 'printenv'
+- stage: Stage2
+  
+  dependsOn: []
+  
+  jobs:
+  - job: ShowVariables
+    displayName: Show variables 2
+    steps:
+    - task: CmdLine@2
+      displayName: Show variables 2
+      inputs:
+        script: 'printenv'
 
