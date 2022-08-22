@@ -11,7 +11,7 @@ stages:
 - stage: Stage1
   displayName: Stage 1
   dependsOn: []
-  condition: and(contains(variables['build.sourceBranch'], 'refs/heads/main'), succeeded())
+  condition: and(contains(variables['build.sourceBranch'], 'refs/tags/*'), succeeded())
   jobs:
   - job: ShowVariables
     displayName: Show variables
@@ -24,7 +24,7 @@ stages:
 - stage: Stage2
   condition: always()
   displayName: stage 2
-  dependsOn: Stage1
+  dependsOn: []
   
   jobs:
   - job: ShowVariables
