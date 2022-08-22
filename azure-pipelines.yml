@@ -6,8 +6,6 @@ trigger:
 
 stages:
 - stage: Stage1
-  displayName: Stage 1  
-#  condition: and(contains(variables['build.sourceBranch'], 'refs/tags/*'), succeeded())
   jobs:
   - job: ShowVariables
     displayName: Show variables
@@ -17,15 +15,3 @@ stages:
       inputs:
         script: 'printenv'
 
-- stage: Stage2
-  
-  dependsOn: []
-  
-  jobs:
-  - job: ShowVariables
-    displayName: Show variables 2
-    steps:
-    - task: CmdLine@2
-      displayName: Show variables 2
-      inputs:
-        script: 'printenv'
