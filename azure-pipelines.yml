@@ -1,16 +1,9 @@
 
 trigger:
-- main
-
-resources:
-  repositories:
-  - repository: Test02
-    type: github
-    trigger:
-     tags:
-        include:
-          - relese.*
-
+ tags:
+  include:
+    - release.*
+        
 
 stages:
 
