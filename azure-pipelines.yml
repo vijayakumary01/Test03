@@ -3,15 +3,9 @@ trigger:
   branches:
     include:
       - refs/tags/*
-      - main
-
-
 
 stages:
 - stage: Stage1
-  displayName: Stage 1
-  dependsOn: []
-  condition: and(contains(variables['build.sourceBranch'], 'refs/heads/main'), succeeded())
   jobs:
   - job: ShowVariables
     displayName: Show variables
@@ -21,15 +15,3 @@ stages:
       inputs:
         script: 'printenv'
 
-- stage: Stage2
-  displayName: stage 2
-  dependsOn: Stage1
-  
-  jobs:
-  - job: ShowVariables
-    displayName: Show variables 2
-    steps:
-    - task: CmdLine@2
-      displayName: Show variables 2
-      inputs:
-        script: 'printenv'
