@@ -3,9 +3,24 @@ trigger:
   include:
     - main
     
- tags:
-   include:
-     - release.*
+resources:
+  pipelines:
+  - pipeline: SmartHotel
+    project: Test03
+    source: SmartHotel-CI
+    trigger:
+      branches:
+        include:
+        - releases/*
+        - main
+        exclude:
+        - topic/*
+      tags: 
+      - Verified
+      - Signed
+      stages:
+      - Production
+      - PreProduction
 stages:
 - stage: Stage1
   displayName: Stage 1
